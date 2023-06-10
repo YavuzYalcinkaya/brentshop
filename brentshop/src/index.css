@@ -10,8 +10,8 @@ body {
 
 .paginate {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: end;
 }
 
 .paginate li {
