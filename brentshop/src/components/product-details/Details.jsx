@@ -48,6 +48,7 @@ const Details = ({ productDetail }) => {
           <input
             className="w-12 text-center text-4xl font-bold"
             value={quantity}
+            onChange={addToBasket}
             type="text"
           />
           <div onClick={increment} className="text-4xl cursor-pointer">
