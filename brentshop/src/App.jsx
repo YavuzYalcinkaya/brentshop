@@ -9,18 +9,16 @@ import Card from "./pages/Card";
 
 function App() {
   return (
-    <div>
-      <PageContainers>
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products/:id" element={<Detail />} />
-            <Route path="/card" element={<Card />} />
-          </Routes>
-        </Router>
-      </PageContainers>
-    </div>
+    <PageContainers>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products/:id" element={<Detail />} />
+          <Route path="/card" element={<Card />} />
+        </Routes>
+      </Router>
+    </PageContainers>
   );
 }
 

@@ -1,16 +1,44 @@
 import Slider from "react-slick";
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+      }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+      }}
+      onClick={onClick}
+    />
+  );
+}
 
 const SliderComp = () => {
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
-    autoplay: true,
+    // autoplay: true,
     slidesToShow: 1,
     slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   };
   return (
-    <div>
+    <section className=" max-w-7xl mx-auto  bg-red-300">
       <Slider {...settings}>
         <div className="!flex items-center bg-gray-100 px-6">
           <div>
@@ -72,7 +100,7 @@ const SliderComp = () => {
           />
         </div>
       </Slider>
-    </div>
+    </section>
   );
 };
 

@@ -3,9 +3,13 @@ import NavbarRight from "./navbarItem/NavbarRight";
 
 const Navbar = () => {
   return (
-    <div className="flex items-center justify-between my-5">
-      <NavbarLeft /> <NavbarRight />
-    </div>
+    <nav>
+      <div className=" max-w-7xl mx-auto my-5">
+        <div className="flex items-center justify-around lg:justify-between h-16">
+          <NavbarLeft /> <NavbarRight />
+        </div>
+      </div>
+    </nav>
   );
 };
 

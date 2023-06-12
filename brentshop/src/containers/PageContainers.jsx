@@ -1,5 +1,9 @@
 const PageContainers = ({ children }) => {
-  return <div className="w-10/12 m-auto">{children}</div>;
+  return (
+    <div className=" bg-lime-300 h-screen max-w-full  flex flex-col">
+      {children}
+    </div>
+  );
 };
 
 export default PageContainers;
