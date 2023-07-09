@@ -13,7 +13,7 @@ const Products = ({ category, sort }) => {
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
-  const itemsPerPage = 6;
+  const itemsPerPage = 12;
   const endOffset = itemOffset + itemsPerPage;
   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentItems = products.slice(itemOffset, endOffset);
@@ -36,12 +36,12 @@ const Products = ({ category, sort }) => {
     }
   }, [dispatch, category]);
   return (
-    <div className="w-[80%]">
+    <div className="w-full mt-10">
       {productsStatus == "LOADING" ? (
         <Loading />
       ) : (
         <>
-          <div className="flex flex-wrap">
+          <div className="grid grid-cols-3 justify-center items-center">
             {currentItems
               ?.sort((a, b) =>
                 sort == "inc"

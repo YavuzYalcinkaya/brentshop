@@ -38,7 +38,7 @@ const SliderComp = () => {
     prevArrow: <SamplePrevArrow />,
   };
   return (
-    <section className=" max-w-7xl mx-auto  bg-red-300">
+    <section className=" max-w-7xl mx-auto">
       <Slider {...settings}>
         <div className="!flex items-center bg-gray-100 px-6">
           <div>

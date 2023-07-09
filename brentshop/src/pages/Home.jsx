@@ -11,10 +11,9 @@ const Home = () => {
     <>
       <SliderComp />
       <Sorting setSort={setSort} />
-      <div className="flex">
-        <Category setCategory={setCategory} />
-        <Products category={category} sort={sort} />
-      </div>
+
+      <Category setCategory={setCategory} />
+      <Products category={category} sort={sort} />
     </>
   );
 };
