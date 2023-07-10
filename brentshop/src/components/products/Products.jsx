@@ -5,7 +5,7 @@ import Loading from "../Loading";
 import Product from "../product/Product";
 import ReactPaginate from "react-paginate";
 
-const Products = ({ category, sort }) => {
+const Products = ({ category, sort, productDetail }) => {
   const dispatch = useDispatch();
   const { products, productsStatus } = useSelector((state) => state.products);
   const [itemOffset, setItemOffset] = useState(0);
@@ -41,7 +41,7 @@ const Products = ({ category, sort }) => {
         <Loading />
       ) : (
         <>
-          <div className="grid grid-cols-3 justify-center items-center">
+          <div className="grid grid-cols-2 xl:grid-cols-3 justify-center items-center">
             {currentItems
               ?.sort((a, b) =>
                 sort == "inc"
@@ -51,7 +51,11 @@ const Products = ({ category, sort }) => {
                   : ""
               )
               ?.map((product, index) => (
-                <Product key={index} product={product} />
+                <Product
+                  key={index}
+                  product={product}
+                  productDetail={productDetail}
+                />
               ))}
           </div>
           <ReactPaginate

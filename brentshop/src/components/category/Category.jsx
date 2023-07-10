@@ -11,14 +11,14 @@ const Category = ({ setCategory }) => {
     dispatch(getCategories());
   }, [dispatch]);
   return (
-    <div className=" w-full bg-gray-100 gap-5 flex justify-evenly items-center">
+    <div className=" mt-5 bg-gray-100 gap-5 flex flex-col xl:flex-row justify-center xl:justify-evenly items-center p-3">
       {categories?.map((category, index) => (
         <div
           onClick={() => {
             setCategory(category);
           }}
           key={index}
-          className=" uppercase text-xl font-bold cursor-pointer hover:bg-gray-200 p-3"
+          className=" uppercase text-lg xl:text-xl font-bold cursor-pointer hover:bg-gray-300 xl:p-3"
         >
           {category}
         </div>

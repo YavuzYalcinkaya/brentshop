@@ -1,5 +1,5 @@
 const PageContainers = ({ children }) => {
-  return <div className="max-w-full  flex flex-col">{children}</div>;
+  return <div className="flex flex-col">{children}</div>;
 };
 
 export default PageContainers;
