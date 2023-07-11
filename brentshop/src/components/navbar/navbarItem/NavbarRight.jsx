@@ -25,7 +25,10 @@ const NavbarRight = () => {
         <BiSearch size={28} />
       </div>
       <AiOutlineHeart size={28} />
-      <div onClick={() => navigate("card")} className="relative cursor-pointer">
+      <div
+        onClick={() => navigate("/checkout")}
+        className="relative cursor-pointer"
+      >
         <div className="absolute -top-3 -right-3 bg-red-500 text-white rounded-full w-5 h-5 flex item-center justify-center">
           {itemCount}
         </div>

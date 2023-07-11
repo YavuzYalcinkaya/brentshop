@@ -39,7 +39,7 @@ const Product = ({ product }) => {
         <div className="absolute top-0 right-0 left-0 bottom-40 flex items-end justify-center">
           {isHovered && (
             <button
-              className="rounded-xl p-3 bg-black text-white mt-3 "
+              className="rounded-xl p-3 bg-black text-white mt-3"
               onClick={() => navigate(`products/${product?.id}`)}
             >
               Add to Basket
