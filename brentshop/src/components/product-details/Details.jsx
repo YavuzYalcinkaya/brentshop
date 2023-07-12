@@ -8,8 +8,12 @@ import {
 } from "react-icons/ai";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import Back from "../turn-back/Back";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Details = ({ productDetail }) => {
+  const navigate = useNavigate();
   const [quantity, setQuantity] = useState(0);
   const dispatch = useDispatch();
 
@@ -31,12 +35,50 @@ const Details = ({ productDetail }) => {
         quantity: quantity,
       })
     );
+    showToastMessage();
+  };
+
+  const showToastMessage = () => {
+    toast.success(
+      <div className="p-2">
+        Product added to your basket!
+        <div className="">
+          <span
+            onClick={() => {
+              navigate("/checkout");
+            }}
+            className=" text-green-600 hover:text-green-500"
+          >
+            Go to Basket
+          </span>
+        </div>
+      </div>,
+      {
+        position: toast.POSITION.TOP_RIGHT,
+        toastId: "basket-toast",
+      }
+    );
   };
 
   return (
     <>
       <div className="mb-10 lg:mb-0">
         <Back />
+      </div>
+      <div>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          toastClassName={"bg-green-50 font-bold w-80"}
+        />
       </div>
       <div className="flex flex-col justify-center items-center lg:flex-row gap-10 lg:m-20">
         <img className="w-[50%] lg:w-3/12" src={productDetail?.image} alt="" />
@@ -74,11 +116,12 @@ const Details = ({ productDetail }) => {
                 />
               </div>
             </div>
-            <button className="gap-5 bg-red-500 hover:bg-[#ef5858] p-3 mt-4 border cursor-pointer rounded-md flex items-center justify-center">
+            <button
+              onClick={addToBasket}
+              className="gap-5 bg-red-500 hover:bg-[#ef5858] p-3 mt-4 border cursor-pointer rounded-md flex items-center justify-center"
+            >
               <AiOutlineShoppingCart className=" w-6 h-6 text-white" />
-              <span onClick={addToBasket} className="text-xl text-white">
-                Add to Basket
-              </span>
+              <span className="text-xl text-white">Add to Basket</span>
             </button>
           </div>
         </div>

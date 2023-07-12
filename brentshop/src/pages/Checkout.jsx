@@ -6,6 +6,8 @@ import { AiFillPlusCircle } from "react-icons/ai";
 import { getCartTotal, clearCart } from "../redux/cartSlice";
 import Basket from "../components/basket/Basket";
 import Back from "../components/turn-back/Back";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Checkout = ({ cart }) => {
   const dispatch = useDispatch();
@@ -18,21 +20,46 @@ const Checkout = ({ cart }) => {
     dispatch(getCartTotal());
   }, [dispatch]);
 
+  const showToastMessage = () => {
+    toast.error("Product have been removed your basket!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  };
+
   return (
     <div className="">
-      <div className=" flex justify-between  bg-gray-200 p-3 items-center text-red-500 ">
-        <div className="flex gap-2 items-center cursor-pointer font-bold lg:ml-10 hover:opacity-80">
-          <AiFillPlusCircle className="w-5 h-5" />
-          <span>Add Coupon</span>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        toastClassName={"bg-red-50 font-bold w-80"}
+      />
+
+      {carts.length > 0 && (
+        <div className=" flex justify-between  bg-gray-200 p-3 items-center text-red-500 ">
+          <div className="flex gap-2 items-center cursor-pointer font-bold lg:ml-10 hover:opacity-80">
+            <AiFillPlusCircle className="w-5 h-5" />
+            <span>Add Coupon</span>
+          </div>
+          <div
+            onClick={() => {
+              dispatch(clearCart(cart?.id));
+              showToastMessage();
+            }}
+            className="flex  gap-2 text-red-500 hover:opacity-80 font-bold items-center cursor-pointer lg:mr-10"
+          >
+            Remove All Product
+            <BsTrash3 />
+          </div>
         </div>
-        <div
-          onClick={() => dispatch(clearCart(cart?.id))}
-          className="flex  gap-2 text-red-500 hover:opacity-80 font-bold items-center cursor-pointer lg:mr-10"
-        >
-          Remove All Product
-          <BsTrash3 />
-        </div>
-      </div>
+      )}
       <Back />
       {carts?.length > 0 ? (
         <div>
@@ -47,7 +74,10 @@ const Checkout = ({ cart }) => {
           </div>
         </div>
       ) : (
-        <div> There is no product in basket</div>
+        <div className="flex justify-center items-center font-bold text-4xl m-32">
+          {" "}
+          There is no product in basket
+        </div>
       )}
     </div>
   );
