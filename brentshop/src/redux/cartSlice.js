@@ -47,6 +47,10 @@ const cartSlice = createSlice({
         state.carts.push(action.payload);
         storeInLocalStorage(state.carts);
       }
+      state.itemCount = state.carts.length; // Update itemCount value
+      state.totalAmount = state.carts.reduce((cartTotal, cartItem) => {
+        return (cartTotal += cartItem.price * cartItem.quantity);
+      }, 0); // Update totalAmount value
     },
     removeFromCart: (state, action) => {
       const tempCart = state.carts.filter((item) => item.id !== action.payload);

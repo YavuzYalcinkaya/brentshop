@@ -40,7 +40,7 @@ const SliderComp = () => {
   return (
     <section className=" max-w-[300px] md:max-w-[670px] xl:max-w-7xl mx-auto">
       <Slider {...settings}>
-        <div className="!flex flex-col  lg:flex-row items-center bg-gray-100 p-4 xl:px-6">
+        <div className="!flex flex-col  xl:flex-row items-center bg-gray-100 p-4 xl:px-6">
           <div className="flex flex-col text-center lg:text-start p-2">
             <h2 className="font-extrabold text-center text-3xl xl:text-6xl">
               Best Shoes

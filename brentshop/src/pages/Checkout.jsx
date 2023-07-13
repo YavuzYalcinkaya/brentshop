@@ -51,6 +51,7 @@ const Checkout = ({ cart }) => {
           <div
             onClick={() => {
               dispatch(clearCart(cart?.id));
+              dispatch(getCartTotal());
               showToastMessage();
             }}
             className="flex  gap-2 text-red-500 hover:opacity-80 font-bold items-center cursor-pointer lg:mr-10"
@@ -74,9 +75,11 @@ const Checkout = ({ cart }) => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center items-center font-bold text-4xl m-32">
+        <div className="flex justify-center items-center w-full mt-32">
           {" "}
-          There is no product in basket
+          <h2 className="font-bold text-2xl xl:text-4xl">
+            There is no product in basket
+          </h2>
         </div>
       )}
     </div>

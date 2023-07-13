@@ -40,7 +40,7 @@ const Details = ({ productDetail }) => {
 
   const showToastMessage = () => {
     toast.success(
-      <div className="p-2">
+      <div className="p-2 mt-4">
         Product added to your basket!
         <div className="">
           <span
@@ -55,7 +55,6 @@ const Details = ({ productDetail }) => {
       </div>,
       {
         position: toast.POSITION.TOP_RIGHT,
-        toastId: "basket-toast",
       }
     );
   };
@@ -77,7 +76,7 @@ const Details = ({ productDetail }) => {
           draggable
           pauseOnHover
           theme="light"
-          toastClassName={"bg-green-50 font-bold w-80"}
+          toastClassName={"bg-green-50 font-bold ml-20 xl:ml-0 w-80"}
         />
       </div>
 
@@ -86,8 +85,12 @@ const Details = ({ productDetail }) => {
 
         <div className="flex flex-col justify-center items-start lg:mt-12 text-center xl:text-start">
           <div className="flex flex-col justify-center  items-center xl:items-start">
-            <h2 className="text-4xl font-extrabold">{productDetail?.title}</h2>
-            <p className="my-2 text-xl">{productDetail?.description}</p>
+            <h2 className="text-4xl  font-extrabold px-3">
+              {productDetail?.title}
+            </h2>
+            <p className="my-2 text-xl px-4 mt-4">
+              {productDetail?.description}
+            </p>
             <div className="my-2 text-xl text-red-500">
               Rating : {productDetail?.rating?.rate}
             </div>
