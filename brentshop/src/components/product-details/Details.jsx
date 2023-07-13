@@ -80,8 +80,10 @@ const Details = ({ productDetail }) => {
           toastClassName={"bg-green-50 font-bold w-80"}
         />
       </div>
+
       <div className="flex flex-col justify-center items-center lg:flex-row gap-10 lg:m-20">
         <img className="w-[50%] lg:w-3/12" src={productDetail?.image} alt="" />
+
         <div className="flex flex-col justify-center items-start lg:mt-12 text-center xl:text-start">
           <div className="flex flex-col justify-center  items-center xl:items-start">
             <h2 className="text-4xl font-extrabold">{productDetail?.title}</h2>

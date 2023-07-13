@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetailProduct } from "../redux/productSlice";
 import { useEffect } from "react";
-import Loading from "../components/Loading";
+import Loading from "../components/loading/Loading";
 import Details from "../components/product-details/Details";
 
 const Detail = () => {
