@@ -42,7 +42,7 @@ const Product = ({ product }) => {
               className="rounded-xl p-3 bg-black text-white mt-3"
               onClick={() => navigate(`products/${product?.id}`)}
             >
-              Add to Basket
+              Go to Details
             </button>
           )}
         </div>

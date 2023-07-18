@@ -5,20 +5,42 @@ import {
   AiOutlinePlus,
   AiOutlineMinus,
   AiOutlineShoppingCart,
+  AiOutlineHeart,
+  AiFillHeart,
 } from "react-icons/ai";
+
 import { MdOutlineAttachMoney } from "react-icons/md";
 import Back from "../turn-back/Back";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "../../redux/favoritesSlice";
 import { useNavigate } from "react-router-dom";
 
 const Details = ({ productDetail }) => {
   const navigate = useNavigate();
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleIconClick = () => {
+    setIsFavorite((prevState) => !prevState);
+    setShowTooltip(true);
+    setTimeout(() => {
+      setShowTooltip(false);
+    }, 2000);
+    if (isFavorite) {
+      dispatch(removeFromFavorites(productDetail.id));
+    } else {
+      dispatch(addToFavorites(productDetail));
+    }
+  };
 
   const decrement = () => {
-    if (quantity > 0) setQuantity(quantity - 1);
+    if (quantity > 1) setQuantity(quantity - 1);
   };
 
   const increment = () => {
@@ -64,31 +86,30 @@ const Details = ({ productDetail }) => {
       <div className="mb-10 lg:mb-0">
         <Back />
       </div>
-      <div>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          toastClassName={"bg-green-50 font-bold ml-20 xl:ml-0 w-80"}
-        />
-      </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        toastClassName={"bg-green-50 font-bold ml-20 xl:ml-0 w-80"}
+      />
 
       <div className="flex flex-col justify-center items-center lg:flex-row gap-10 lg:m-20">
         <img className="w-[50%] lg:w-3/12" src={productDetail?.image} alt="" />
 
         <div className="flex flex-col justify-center items-start lg:mt-12 text-center xl:text-start">
           <div className="flex flex-col justify-center  items-center xl:items-start">
-            <h2 className="text-4xl  font-extrabold px-3">
+            <h2 className="text-4xl  font-extrabold px-2">
               {productDetail?.title}
             </h2>
-            <p className="my-2 text-xl px-4 mt-4">
+            <p className="my-2 text-xl px-3 mt-4">
               {productDetail?.description}
             </p>
             <div className="my-2 text-xl text-red-500">
@@ -121,13 +142,35 @@ const Details = ({ productDetail }) => {
                 />
               </div>
             </div>
-            <button
-              onClick={addToBasket}
-              className="gap-5 bg-red-500 hover:bg-[#ef5858] p-3 mt-4 border cursor-pointer rounded-md flex items-center justify-center"
-            >
-              <AiOutlineShoppingCart className=" w-6 h-6 text-white" />
-              <span className="text-xl text-white">Add to Basket</span>
-            </button>
+            <div className="flex justify-center items-center gap-6">
+              <button
+                onClick={addToBasket}
+                className="gap-5 bg-red-500 hover:bg-[#ef5858] p-3 mt-4 border cursor-pointer rounded-md flex items-center justify-center"
+              >
+                <AiOutlineShoppingCart className=" w-6 h-6 text-white" />
+                <span className="text-xl text-white">Add to Basket</span>
+              </button>
+
+              <div className="relative">
+                <div
+                  className="border border-solid border-gray-300 bg-white rounded-full cursor-pointer w-12 h-12 mt-4 flex justify-center items-center hover:relative"
+                  onMouseEnter={() => setShowTooltip(true)}
+                  onMouseLeave={() => setShowTooltip(false)}
+                  onClick={handleIconClick}
+                >
+                  {isFavorite ? (
+                    <AiFillHeart className=" text-red-500" size={30} />
+                  ) : (
+                    <AiOutlineHeart className=" hover:text-red-500" size={30} />
+                  )}
+                  {showTooltip && (
+                    <div className="absolute top-0 left-2 -mt-10 bg-slate-50 w-36 border border-solid border-gray-300 text-black  py-3 text-center rounded">
+                      {isFavorite ? "Favorilere eklendi" : "Favorilere ekle"}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

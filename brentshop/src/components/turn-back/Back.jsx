@@ -7,7 +7,7 @@ const Back = () => {
       onClick={() => {
         navigate("/");
       }}
-      className="flex gap-2 justify-start rounded-lg items-center ml-5 mt-5 text-black hover:opacity-75"
+      className="flex gap-2 w-44 justify-start rounded-lg items-center ml-5 mt-5 text-black hover:opacity-75"
     >
       <IoArrowBackCircleSharp className="w-6 h-6" />
       <button type="button"> Return to Home </button>

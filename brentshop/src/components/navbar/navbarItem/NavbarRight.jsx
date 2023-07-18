@@ -24,12 +24,16 @@ const NavbarRight = () => {
         />
         <BiSearch size={28} />
       </div>
-      <AiOutlineHeart size={28} />
+      <AiOutlineHeart
+        onClick={() => navigate("/favorites")}
+        size={28}
+        className="cursor-pointer hover:text-red-500"
+      />
       <div
         onClick={() => navigate("/checkout")}
         className="relative cursor-pointer"
       >
-        <div className="absolute -top-3 -right-3 bg-red-500 text-white rounded-full w-5 h-5 flex item-center justify-center">
+        <div className="absolute -top-3 -right-3 bg-red-500 text-white rounded-full w-5 h-5 flex text-center item-center justify-center">
           {itemCount}
         </div>
         <SlBasket size={28} />
