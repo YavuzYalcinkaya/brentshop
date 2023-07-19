@@ -1,30 +1,87 @@
 import Back from "../components/turn-back/Back";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { MdOutlineAttachMoney } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { IoCloseOutline } from "react-icons/io5";
+import { removeFromFavorites } from "../redux/favoritesSlice";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { addToCart } from "../redux/cartSlice";
 
 const Favorites = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const favorites = useSelector((state) => state.favorites.favorites);
+
+  const handleProductClick = (productId) => {
+    navigate(`/products/${productId}`); // Ürün detay sayfasına yönlendirme
+  };
+
+  const addToBasket = (productDetail) => {
+    dispatch(
+      addToCart({
+        id: productDetail?.id,
+        title: productDetail?.title,
+        image: productDetail?.image,
+        price: productDetail?.price,
+      })
+    );
+  };
+
   return (
-    <div>
+    <>
       <div>
         <Back />
       </div>
-      <div>
+      <div className="flex flex-wrap gap-5 w-[1200px] border-none ml-24 mt-3">
         {favorites.map((favorite) => (
-          <div key={favorite.id} className="flex flex-col">
-            <img
-              className="w-[50%] lg:w-3/12"
-              src={favorite.image}
-              alt={favorite.title}
-            />
-            <h3>{favorite.title}</h3>
-            <p>{favorite.description}</p>
-            <span>{favorite?.rating?.rate}</span>
-            <span>{favorite?.rating?.count}</span>
-            <span>{favorite.price}</span>
+          <div
+            key={favorite.id}
+            className="relative flex flex-col justify-between px-4 py-2 w-[250px] rounded-lg border border-solid border-[#eaeaea] bg-white"
+          >
+            <div className="absolute top-1 right-1 w-8 h-8 flex justify-center items-center rounded-full cursor-pointer z-10 border border-solid border-gray-300">
+              <IoCloseOutline
+                className="hover:text-red-500"
+                onClick={() => {
+                  dispatch(removeFromFavorites(favorite?.id));
+                }}
+              />
+            </div>
+            <div className="flex justify-center items-center">
+              <img
+                className=" w-[150px] h-[200px] cursor-pointer"
+                src={favorite.image}
+                alt={favorite.title}
+                onClick={() => handleProductClick(favorite.id)}
+              />
+            </div>
+            <div className=" flex flex-col mt-2 mb-2 gap-2">
+              <h3 className="font-bold text-sm text-center  text-gray-700">
+                {favorite.title.split(" ").length > 3
+                  ? favorite.title.split(" ").slice(0, 3).join(" ") + "..."
+                  : favorite.title}
+              </h3>
+
+              <div className=" text-red-500">
+                Rating : {favorite?.rating?.rate}
+              </div>
+              <div className=" text-red-500">
+                Count : {favorite?.rating?.count}
+              </div>
+              <div className="font-light text-base flex  items-center">
+                {favorite.price} <MdOutlineAttachMoney />
+              </div>
+              <button
+                onClick={() => addToBasket(favorite)}
+                className="gap-5 bg-red-500 hover:bg-[#ef5858] p-1 mt-1 border cursor-pointer rounded-md flex items-center justify-center"
+              >
+                <AiOutlineShoppingCart className=" w-5 h-5 text-white" />
+                <span className="text-white">Add to Basket</span>
+              </button>
+            </div>
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

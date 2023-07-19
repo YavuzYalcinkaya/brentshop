@@ -12,9 +12,9 @@ import "react-toastify/dist/ReactToastify.css";
 const Checkout = ({ cart }) => {
   const dispatch = useDispatch();
 
-  const { carts, totalAmount, itemCount } = useSelector((state) => state.carts);
+  const { carts, totalAmount } = useSelector((state) => state.carts);
 
-  console.log(carts, totalAmount, itemCount, "carts");
+  // console.log(carts, totalAmount, itemCount, "carts");
 
   useEffect(() => {
     dispatch(getCartTotal());

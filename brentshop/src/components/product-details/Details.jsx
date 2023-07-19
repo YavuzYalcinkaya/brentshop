@@ -8,7 +8,6 @@ import {
   AiOutlineHeart,
   AiFillHeart,
 } from "react-icons/ai";
-
 import { MdOutlineAttachMoney } from "react-icons/md";
 import Back from "../turn-back/Back";
 import { ToastContainer, toast } from "react-toastify";
