@@ -56,10 +56,10 @@ const Details = ({ productDetail }) => {
         quantity: quantity,
       })
     );
-    showToastMessage();
+    showToastMessageAddedBasket();
   };
 
-  const showToastMessage = () => {
+  const showToastMessageAddedBasket = () => {
     toast.success(
       <div className="p-2 mt-4">
         Product added to your basket!
@@ -88,7 +88,7 @@ const Details = ({ productDetail }) => {
 
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar
         newestOnTop={false}
         closeOnClick
