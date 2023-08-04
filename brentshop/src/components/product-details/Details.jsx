@@ -163,8 +163,8 @@ const Details = ({ productDetail }) => {
                     <AiOutlineHeart className=" hover:text-red-500" size={30} />
                   )}
                   {showTooltip && (
-                    <div className="absolute top-0 left-2 -mt-10 bg-slate-50 w-36 border border-solid border-gray-300 text-black  py-3 text-center rounded">
-                      {isFavorite ? "Favorilere eklendi" : "Favorilere ekle"}
+                    <div className="absolute top-0 left-2 -mt-10  bg-slate-50 w-28 text-xs border border-solid border-gray-300 text-black  py-3 text-center rounded">
+                      {isFavorite ? "Added favorites" : "Add favorite"}
                     </div>
                   )}
                 </div>

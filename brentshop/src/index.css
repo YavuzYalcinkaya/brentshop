@@ -35,3 +35,8 @@ body {
 .paginate li:hover {
   background-color: #2f2e2e;
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: black !important;
+}
