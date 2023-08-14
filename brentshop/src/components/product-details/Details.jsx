@@ -103,31 +103,31 @@ const Details = ({ productDetail }) => {
       <div className="flex flex-col justify-center items-center lg:flex-row gap-10 lg:m-20">
         <img className="w-[50%] lg:w-3/12" src={productDetail?.image} alt="" />
 
-        <div className="flex flex-col justify-center items-start lg:mt-12 text-center xl:text-start">
+        <div className="flex flex-col justify-center items-start lg:mt-12 xl:text-start">
           <div className="flex flex-col justify-center  items-center xl:items-start">
-            <h2 className="text-4xl  font-extrabold px-2">
+            <h2 className="text-2xl lg:text-4xl text-[#484848] text-center font-extrabold">
               {productDetail?.title}
             </h2>
-            <p className="my-2 text-xl px-3 mt-4">
+            <p className="my-2 px-2 mt-4 text-base md:text-xl">
               {productDetail?.description}
             </p>
-            <div className="my-2 text-xl text-red-500">
-              Rating : {productDetail?.rating?.rate}
+            <div className="flex flex-row gap-3 lg:gap-0 text-base md:flex-col md:text-xl md:ml-4">
+              <div className="my-2 text-red-500">
+                Rating : {productDetail?.rating?.rate}
+              </div>
+
+              <div className="my-2 text-red-500">
+                Count : {productDetail?.rating?.count}
+              </div>
             </div>
-            <div className="my-2 text-xl text-red-500">
-              Count : {productDetail?.rating?.count}
-            </div>
-            <div className="text-2xl font-bold flex justify-center items-center">
-              {productDetail?.price} <MdOutlineAttachMoney />
-            </div>
-            <div className="flex  items-center h-12 mt-4  border border-solid border-[#DADADA] rounded-3xl">
+
+            <div className="flex items-center h-12  border border-solid border-[#DADADA] rounded-3xl">
               <div className="p-2 hover:bg-zinc-200 rounded-full">
                 <AiOutlineMinus
                   onClick={decrement}
                   className="cursor-pointer w-6 h-6 "
                 />
               </div>
-
               <input
                 className="w-14 text-center text-xl font-bold outline-none"
                 value={quantity}
@@ -141,38 +141,121 @@ const Details = ({ productDetail }) => {
                 />
               </div>
             </div>
-            <div className="flex justify-center items-center gap-6">
-              <button
-                onClick={addToBasket}
-                className="gap-5 bg-red-500 hover:bg-[#ef5858] p-3 mt-4 border cursor-pointer rounded-md flex items-center justify-center"
-              >
-                <AiOutlineShoppingCart className=" w-6 h-6 text-white" />
-                <span className="text-xl text-white">Add to Basket</span>
-              </button>
-
-              <div className="relative">
-                <div
-                  className="border border-solid border-gray-300 bg-white rounded-full cursor-pointer w-12 h-12 mt-4 flex justify-center items-center hover:relative"
-                  onMouseEnter={() => setShowTooltip(true)}
-                  onMouseLeave={() => setShowTooltip(false)}
-                  onClick={handleIconClick}
-                >
-                  {isFavorite ? (
-                    <AiFillHeart className=" text-red-500" size={30} />
-                  ) : (
-                    <AiOutlineHeart className=" hover:text-red-500" size={30} />
-                  )}
-                  {showTooltip && (
-                    <div className="absolute top-0 left-2 -mt-10  bg-slate-50 w-28 text-xs border border-solid border-gray-300 text-black  py-3 text-center rounded">
-                      {isFavorite ? "Added favorites" : "Add favorite"}
-                    </div>
-                  )}
+            <div className="bg-slate-100 lg:bg-white p-3 lg:p-0 flex flex-row lg:flex-col justify-between lg:justify-center items-center lg:items-start w-full lg:mt-3 fixed bottom-0 z-30 lg:relative">
+              <div className="text-lg lg:text-3xl font-bold flex justify-center items-center ml-2">
+                {productDetail?.price} <MdOutlineAttachMoney />
+              </div>
+              <div className="flex items-center lg:flex-row gap-4 lg:mt-4">
+                <div className="relative">
+                  <div
+                    className="border border-solid border-gray-300 rounded-full cursor-pointer w-12 h-12 flex justify-center items-center hover:relative"
+                    onMouseEnter={() => setShowTooltip(true)}
+                    onMouseLeave={() => setShowTooltip(false)}
+                    onClick={handleIconClick}
+                  >
+                    {isFavorite ? (
+                      <AiFillHeart className=" text-red-500" size={25} />
+                    ) : (
+                      <AiOutlineHeart
+                        className=" hover:text-red-500"
+                        size={25}
+                      />
+                    )}
+                    {showTooltip && (
+                      <div className="absolute top-0 left-2 -mt-10  bg-slate-50 w-28 text-xs border border-solid border-gray-300 text-black  py-3 text-center rounded">
+                        {isFavorite ? "Added favorites" : "Add favorite"}
+                      </div>
+                    )}
+                  </div>
                 </div>
+                <button
+                  onClick={addToBasket}
+                  className="gap-2 bg-red-500 hover:bg-[#ef5858] p-3 border cursor-pointer rounded-md flex items-center justify-center"
+                >
+                  <AiOutlineShoppingCart className=" w-6 h-6 text-white" />
+                  <span className="lg:text-xl text-white">Add to Basket</span>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* <div className="flex flex-col items-center gap-10 ">
+        <img className="w-[50%] lg:w-3/12" src={productDetail?.image} alt="" />
+
+        <div className="flex flex-col justify-center items-start lg:mt-12 xl:text-start">
+          <h2 className="text-2xl lg:text-4xl text-[#484848] font-extrabold">
+            {productDetail?.title}
+          </h2>
+          <p className="my-2 px-2 mt-4 text-base md:text-xl">
+            {productDetail?.description}
+          </p>
+          <div className="flex flex-row text-base gap-3 md:flex-col md:text-xl md:ml-4">
+            <div className="my-2 text-red-500">
+              Rating : {productDetail?.rating?.rate}
+            </div>
+            <div className="my-2 text-red-500">
+              Count : {productDetail?.rating?.count}
+            </div>
+          </div>
+
+          <div className="flex items-center h-12  border border-solid border-[#DADADA] rounded-3xl">
+            <div className="p-2 hover:bg-zinc-200 rounded-full">
+              <AiOutlineMinus
+                onClick={decrement}
+                className="cursor-pointer w-6 h-6 "
+              />
+            </div>
+            <input
+              className="w-14 text-center text-xl font-bold outline-none"
+              value={quantity}
+              onChange={addToBasket}
+              type="text"
+            />
+            <div className="p-2 hover:bg-zinc-200 rounded-full">
+              <AiOutlinePlus
+                onClick={increment}
+                className="cursor-pointer w-6 h-6"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-slate-100 lg:bg-white p-3 lg:p-0 flex flex-row lg:flex-col justify-between lg:justify-center items-center lg:items-start fixed bottom-0 z-30 lg:relative">
+        <div className="text-lg lg:text-2xl font-bold flex justify-center items-center ml-2">
+          {productDetail?.price} <MdOutlineAttachMoney />
+        </div>
+        <div className="flex lg:flex-row gap-2 items-center">
+          <div className="relative">
+            <div
+              className="border border-solid border-gray-300 rounded-full cursor-pointer w-12 h-12 flex justify-center items-center hover:relative"
+              onMouseEnter={() => setShowTooltip(true)}
+              onMouseLeave={() => setShowTooltip(false)}
+              onClick={handleIconClick}
+            >
+              {isFavorite ? (
+                <AiFillHeart className="text-red-500" size={25} />
+              ) : (
+                <AiOutlineHeart className="hover:text-red-500" size={25} />
+              )}
+              {showTooltip && (
+                <div className="absolute top-0 left-2 -mt-10 bg-slate-50 w-28 text-xs border border-solid border-gray-300 text-black py-3 text-center rounded">
+                  {isFavorite ? "Added to favorites" : "Add to favorites"}
+                </div>
+              )}
+            </div>
+          </div>
+          <button
+            onClick={addToBasket}
+            className="gap-2 bg-red-500 hover:bg-[#ef5858] p-3 border cursor-pointer rounded-md flex items-center justify-center"
+          >
+            <AiOutlineShoppingCart className="w-6 h-6 text-white" />
+            <span className="lg:text-xl text-white">Add to Basket</span>
+          </button>
+        </div>
+      </div> */}
     </>
   );
 };

@@ -38,7 +38,7 @@ const Products = ({ category, sort, productDetail }) => {
         <Loading />
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 justify-center items-center">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 justify-center gap-4 items-center">
             {currentItems
               ?.sort((a, b) =>
                 sort == "inc"

@@ -27,7 +27,7 @@ const Checkout = ({ cart }) => {
   };
 
   return (
-    <div className="">
+    <>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -43,7 +43,7 @@ const Checkout = ({ cart }) => {
       />
 
       {carts.length > 0 && (
-        <div className=" flex justify-between  bg-gray-200 p-3 items-center text-red-500 ">
+        <div className=" flex justify-between bg-gray-200 p-3 items-center text-red-500 ">
           <div className="flex gap-2 items-center cursor-pointer font-bold lg:ml-10 hover:opacity-80">
             <AiFillPlusCircle className="w-5 h-5" />
             <span>Add Coupon</span>
@@ -63,26 +63,26 @@ const Checkout = ({ cart }) => {
       )}
       <Back />
       {carts?.length > 0 ? (
-        <div>
+        <div className="border border-solid border-red-500 shadow-lg w-full">
           {carts?.map((cart, index) => (
             <Basket key={index} cart={cart} />
           ))}
-          <div className="flex items-center justify-center lg:justify-end lg:mr-10  text-2xl">
-            <div className="bg-gray-200 p-5 font-semibold mb-10">
-              TOTAL AMOUNT:{" "}
-              <span className="font-semibold ml-2"> {totalAmount} $</span>
-            </div>
+          <div className="flex justify-between items-center gap-3 p-5 lg:justify-end lg:mr-10 lg:text-2xl w-full fixed bottom-0 bg-slate-100">
+            <span className="font-semibold ml-2"> {totalAmount} $</span>
+            <button className="bg-red-500 hover:bg-[#ef5858] p-2 border cursor-pointer rounded-md flex items-center justify-center text-white text-base">
+              Complete The Shopping
+            </button>
           </div>
         </div>
       ) : (
         <div className="flex justify-center items-center w-full mt-32">
           {" "}
-          <h2 className="font-bold text-2xl xl:text-4xl">
+          <h2 className="font-bold text-lg lg:text-2xl xl:text-4xl">
             There is no product in basket
           </h2>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
