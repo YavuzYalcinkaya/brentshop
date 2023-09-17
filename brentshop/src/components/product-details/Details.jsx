@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
 import {
   AiOutlinePlus,
@@ -24,6 +24,24 @@ const Details = ({ productDetail }) => {
   const dispatch = useDispatch();
   const [showTooltip, setShowTooltip] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const favorites = useSelector((state) => state.favorites.favorites);
+
+  useEffect(() => {
+    // Sayfa yüklendiğinde localStorage'dan favori durumunu al
+    checkIdInArray(favorites, productDetail.id);
+    const favoriteStatus = favorites
+      .map((item) => item.id)
+      .includes(productDetail.id);
+    setIsFavorite(favoriteStatus);
+  }, [favorites, productDetail.id]);
+  useEffect(() => {
+    console.log("favorites detail", favorites);
+  });
+
+  const checkIdInArray = (itemArray, targetId) => {
+    const result = itemArray.map((item) => item.id).includes(targetId);
+    console.log("result", result);
+  };
 
   const handleIconClick = () => {
     setIsFavorite((prevState) => !prevState);
@@ -31,10 +49,16 @@ const Details = ({ productDetail }) => {
     setTimeout(() => {
       setShowTooltip(false);
     }, 2000);
+    localStorage.setItem(`favorite_${productDetail.id}`, !isFavorite);
     if (isFavorite) {
       dispatch(removeFromFavorites(productDetail.id));
+      // setFavorites((prevFavorites) =>
+      //   prevFavorites.filter((id) => id !== productDetail.id)
+      // );
     } else {
       dispatch(addToFavorites(productDetail));
+
+      // setFavorites((prevFavorites) => [...prevFavorites, productDetail.id]);
     }
   };
 
@@ -100,8 +124,8 @@ const Details = ({ productDetail }) => {
         toastClassName={"bg-green-50 font-bold ml-20 xl:ml-0 w-80"}
       />
 
-      <div className="flex flex-col justify-center items-center lg:flex-row gap-5 lg:m-20">
-        <img className="w-[50%] lg:w-3/12" src={productDetail?.image} alt="" />
+      <div className="flex flex-col justify-center items-center xl:flex-row gap-5 lg:m-20">
+        <img className="w-[30%] xl:w-3/12" src={productDetail?.image} alt="" />
 
         <div className="flex flex-col justify-center items-start lg:mt-12 xl:text-start">
           <div className="flex flex-col justify-center  items-center xl:items-start">
@@ -141,7 +165,7 @@ const Details = ({ productDetail }) => {
                 />
               </div>
             </div>
-            <div className="sticky bottom-0 z-20 bg-slate-100 lg:bg-white p-3 lg:p-0 flex flex-row lg:flex-col justify-between lg:justify-center items-center lg:items-start w-full mt-3 lg:relative">
+            <div className="sticky bottom-0 z-20 bg-slate-100 lg:bg-white p-3 lg:p-0 flex flex-row xl:flex-col justify-between xl:justify-center items-center xl:items-start w-full mt-3 xl:relative">
               <div className="text-lg lg:text-3xl font-bold flex justify-center items-center ml-2">
                 {productDetail?.price} <MdOutlineAttachMoney />
               </div>

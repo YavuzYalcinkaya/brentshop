@@ -31,7 +31,7 @@ const Favorites = () => {
     <>
       <Back />
       {favorites?.length > 0 ? (
-        <div className="flex flex-wrap gap-5 w-[1200px] border-none ml-24 mt-3">
+        <div className="flex flex-wrap gap-5 justify-center xl:justify-start xl:max-w-[1200px] border-none xl:ml-24 mt-3">
           {favorites.map((favorite) => (
             <div
               key={favorite.id}
@@ -55,9 +55,10 @@ const Favorites = () => {
               </div>
               <div className=" flex flex-col mt-2 mb-2 gap-2">
                 <h3 className="font-bold text-sm text-center  text-gray-700">
-                  {favorite.title.split(" ").length > 3
+                  {/* {favorite.title.split(" ").length > 3
                     ? favorite.title.split(" ").slice(0, 3).join(" ") + "..."
-                    : favorite.title}
+                    : favorite.title} */}
+                  {favorite.title}
                 </h3>
 
                 <div className=" text-red-500">
