@@ -32,7 +32,11 @@ const Basket = ({ cart }) => {
       </div>
       <div className="mt-3 flex flex-col lg:flex-row items-center gap-6 p-4 shadow-lg w-full">
         <div className="flex items-center gap-8">
-          <img className="w-[20%] lg:w-[15%] ml-5" src={cart?.image} alt="" />
+          <img
+            className="w-[20%] lg:w-[15%] ml-5 object-contain"
+            src={cart?.image}
+            alt=""
+          />
           <div className="flex flex-col items-start gap-4">
             <h2 className="text-xs md:text-lg">{cart?.title}</h2>
             <button

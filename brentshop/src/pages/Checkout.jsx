@@ -13,8 +13,6 @@ const Checkout = ({ cart, productDetail }) => {
 
   const { carts, totalAmount } = useSelector((state) => state.carts);
 
-  // console.log(carts, totalAmount, itemCount, "carts");
-
   useEffect(() => {
     dispatch(getCartTotal());
   }, [dispatch]);

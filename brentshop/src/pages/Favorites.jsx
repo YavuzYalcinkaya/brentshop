@@ -23,6 +23,7 @@ const Favorites = () => {
         title: productDetail?.title,
         image: productDetail?.image,
         price: productDetail?.price,
+        quantity: 1,
       })
     );
   };
@@ -55,9 +56,6 @@ const Favorites = () => {
               </div>
               <div className=" flex flex-col mt-2 mb-2 gap-2">
                 <h3 className="font-bold text-sm text-center  text-gray-700">
-                  {/* {favorite.title.split(" ").length > 3
-                    ? favorite.title.split(" ").slice(0, 3).join(" ") + "..."
-                    : favorite.title} */}
                   {favorite.title}
                 </h3>
 
